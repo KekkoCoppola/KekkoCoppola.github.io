@@ -43,10 +43,10 @@ kekkocoppola.github.io/
 ## 📬 Contatti
 
 Se vuoi discutere di un progetto o semplicemente salutarmi, sentiti libero di contattarmi!
+*   📩 **Email**: francescocoppola877@gmail.com | francescocoppolaa@pec.it
+*   👜 **LinkedIn**: https://www.linkedin.com/in/francesco-coppola-402418359/
+*   💻 **GitHub**: [https://github.com/KekkoCoppola](https://github.com/KekkoCoppola)
 
-Email: francescocoppola877@gmail.com | francescocoppolaa@pec.it
-LinkedIn: https://www.linkedin.com/in/francesco-coppola-402418359/
-GitHub: [https://github.com/KekkoCoppola](https://github.com/KekkoCoppola)
 
 <p align="center">
 Realizzato con ❤️ da <strong>Kekko Coppola</strong>
