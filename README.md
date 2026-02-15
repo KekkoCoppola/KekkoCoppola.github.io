@@ -34,11 +34,10 @@ Questo portfolio è costruito utilizzando le seguenti tecnologie:
 
 ```text
 kekkocoppola.github.io/
-├── index.html        # Home page principale
-├── css/              # Fogli di stile
-├── js/               # Script JavaScript
-├── assets/           # Immagini e media
-└── README.md         # Documentazione
+├── assets/           # Immagini
+├── style/            # Fogli di stile
+├── README.md/        # Documentazione
+└── index.html/       # Pagina Principale
 ```
 ## 📬 Contatti
 
