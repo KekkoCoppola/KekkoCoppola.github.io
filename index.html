@@ -83,12 +83,17 @@
         </div>
     </div>
 
-    <!-- About Sidebar -->
-    <aside class="sidebar-panel" id="panel-about">
-        <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Draggable Windows -->
+
+    <!-- About Window -->
+    <div class="glass-window" id="panel-about">
+        <div class="window-header">
+            <span class="window-title">About Me</span>
+            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="sidebar-content">
             <div class="section-header">
-                <span class="section-label">About Me</span>
+                <span class="section-label">Introduzione</span>
                 <h2 class="section-title">Chi <span class="gradient">Sono</span></h2>
             </div>
             
@@ -124,11 +129,14 @@
                 </div>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <!-- Skills Sidebar -->
-    <aside class="sidebar-panel" id="panel-skills">
-        <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Skills Window -->
+    <div class="glass-window" id="panel-skills">
+        <div class="window-header">
+            <span class="window-title">Skills Overview</span>
+            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="sidebar-content">
             <div class="section-header">
                 <span class="section-label">Tech Stack</span>
@@ -183,7 +191,6 @@
                     </div>
                 </div>
                 
-                <!-- Animazioni barre percentuali riadattate alla modale -->
                 <div class="skill-bar-container" style="margin-top: 2rem;">
                     <div class="skill-bar">
                         <div class="skill-bar-header">
@@ -215,14 +222,17 @@
                 </div>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <!-- Projects Sidebar -->
-    <aside class="sidebar-panel" id="panel-projects">
-        <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Projects Window -->
+    <div class="glass-window" id="panel-projects">
+        <div class="window-header">
+            <span class="window-title">Portfolio</span>
+            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="sidebar-content">
             <div class="section-header">
-                <span class="section-label">Portfolio</span>
+                <span class="section-label">Lavori Recenti</span>
                 <h2 class="section-title">I miei <span class="gradient">Progetti</span></h2>
             </div>
             
@@ -343,15 +353,18 @@
                 </article>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <!-- Education Sidebar -->
-    <aside class="sidebar-panel" id="panel-education">
-        <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Education Window -->
+    <div class="glass-window" id="panel-education">
+        <div class="window-header">
+            <span class="window-title">Education</span>
+            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="sidebar-content">
             <div class="section-header">
-                <span class="section-label">Education</span>
-                <h2 class="section-title">La mia <span class="gradient">Formazione</span></h2>
+                <span class="section-label">Formazione</span>
+                <h2 class="section-title">Il mio <span class="gradient">Percorso</span></h2>
             </div>
             
             <div class="education-timeline">
@@ -381,11 +394,14 @@
                 </div>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <!-- Contact Sidebar -->
-    <aside class="sidebar-panel" id="panel-contact">
-        <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Contact Window -->
+    <div class="glass-window" id="panel-contact">
+        <div class="window-header">
+            <span class="window-title">Contact</span>
+            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="sidebar-content">
             <div class="section-header">
                 <span class="section-label">Get In Touch</span>
@@ -422,7 +438,7 @@
                 </a>
             </div>
         </div>
-    </aside>
+    </div>
 
     <!-- Core Scripts -->
     <script type="module">
@@ -431,7 +447,6 @@
         const canvas = document.getElementById('canvas3d');
         const spline = new Application(canvas);
         
-        // Remove loader when Spline finishes loading
         spline.load('https://prod.spline.design/0M5Zwd4bfkk7uAqN/scene.splinecode')
             .then(() => {
                 document.getElementById('loader').classList.add('hidden');
@@ -442,26 +457,33 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('[data-target]');
-            const sidebars = document.querySelectorAll('.sidebar-panel');
+            const windows = document.querySelectorAll('.glass-window');
             const overlays = document.querySelectorAll('.overlay-panel');
             const closeBtns = document.querySelectorAll('.close-btn');
             
-            // Helper function to close all
-            function closeAllPanels() {
-                sidebars.forEach(p => p.classList.remove('active'));
-                overlays.forEach(p => p.classList.remove('active'));
-            }
+            let topZIndex = 1500; // Counter for bringing window to front
 
-            // Target opening logic
+            // Targeting logic
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('data-target');
-                    closeAllPanels();
                     
-                    const el = document.getElementById('panel-' + targetId);
-                    if(el) {
-                        el.classList.add('active');
+                    // If opening home, hide everything
+                    if (targetId === 'home') {
+                        windows.forEach(p => p.classList.remove('active'));
+                        overlays.forEach(p => p.classList.remove('active'));
+                        document.getElementById('panel-home').classList.add('active');
+                    } else {
+                        // Open the window and bring it to front
+                        const el = document.getElementById('panel-' + targetId);
+                        if(el && !el.classList.contains('active')) {
+                            // Don't close others immediately to allow multiple open windows
+                            el.classList.add('active');
+                            // Always bring to front when opening
+                            topZIndex++;
+                            el.style.zIndex = topZIndex;
+                        }
                     }
                     
                     // Close mobile menu if open
@@ -472,10 +494,83 @@
             
             // Close button logic
             closeBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    closeAllPanels();
-                    // By default when closed, return to the "home" hero overlay
-                    document.getElementById('panel-home').classList.add('active');
+                btn.addEventListener('click', (e) => {
+                    // Close this specific window
+                    const windowElem = e.target.closest('.glass-window');
+                    if (windowElem) {
+                        windowElem.classList.remove('active');
+                    }
+                    
+                    // Check if any window is still open
+                    const anyOpen = Array.from(windows).some(w => w.classList.contains('active'));
+                    if (!anyOpen) {
+                        document.getElementById('panel-home').classList.add('active');
+                    }
+                });
+            });
+
+            // --- DRAG AND DROP OS-LIKE LOGIC ---
+            windows.forEach(win => {
+                const header = win.querySelector('.window-header');
+                
+                // Bring to front when clicked anywhere on the window
+                win.addEventListener('mousedown', () => {
+                    topZIndex++;
+                    win.style.zIndex = topZIndex;
+                    // Also hide home panel if it's there
+                    document.getElementById('panel-home').classList.remove('active');
+                });
+
+                if (!header) return;
+
+                let isDragging = false;
+                let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+
+                header.addEventListener('mousedown', (e) => {
+                    // Avoid dragging side effects if closing
+                    if (e.target.closest('.close-btn')) return;
+
+                    isDragging = true;
+                    win.classList.add('dragging');
+                    
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    
+                    // Get current CSS transform translate values (or default center)
+                    const style = window.getComputedStyle(win);
+                    const matrix = new DOMMatrixReadOnly(style.transform);
+                    
+                    // The transform translate values in bounding logic
+                    const rect = win.getBoundingClientRect();
+                    // We switch from translate(-50%, -50%) to direct pixel top/left for dragging ease
+                    win.style.left = rect.left + 'px';
+                    win.style.top = rect.top + 'px';
+                    win.style.transform = 'none'; // Clear translate(-50%, -50%)
+
+                    initialLeft = rect.left;
+                    initialTop = rect.top;
+
+                    // Disable text selection during drag
+                    document.body.style.userSelect = 'none';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    win.style.left = `${initialLeft + dx}px`;
+                    win.style.top = `${initialTop + dy}px`;
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        win.classList.remove('dragging');
+                        document.body.style.userSelect = '';
+                    }
                 });
             });
 

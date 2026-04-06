@@ -65,6 +65,8 @@ a {
   z-index: 1; /* Lowest layer visually */
   background-color: var(--bg-primary);
   pointer-events: auto; /* Allow interaction with spline */
+  /* Hack to hide Spline watermark */
+  transform: scale(1.08) translateY(20px);
 }
 .spline-container canvas {
   width: 100% !important;
@@ -248,62 +250,90 @@ a {
   background: rgba(255,255,255,0.1);
 }
 
-/* SIDEBAR PANELS */
-.sidebar-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 45vw;
-  min-width: 400px;
-  max-width: 600px;
-  height: 100vh;
+/* GLASS WINDOWS (DRAGGABLE OS-LIKE PANELS) */
+.glass-window {
+  position: absolute; /* Needed for dragging */
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  max-width: 90vw;
+  height: 70vh;
+  max-height: 800px;
   background: var(--bg-card);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border-left: 1px solid rgba(255,255,255,0.1);
-  z-index: 1500; /* Under navbar */
-  transform: translateX(100%);
-  transition: transform var(--transition-bounce);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  z-index: 1500; 
+  /* Modal default hidden state (Scale down fade) */
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
-.sidebar-panel.active {
-  transform: translateX(0);
+.glass-window.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+/* When being dragged, completely kill the CSS transition so it follows mouse instantly */
+.glass-window.dragging {
+  transition: none !important;
+}
+
+.window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: grab;
+}
+.window-header:active {
+  cursor: grabbing;
+}
+.window-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .close-btn {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
   background: rgba(255,255,255,0.1);
   border: none;
   color: white;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: var(--transition-fast);
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .close-btn:hover {
-  background: var(--gradient-primary);
+  background: #ef4444; /* OS Red close style */
   transform: scale(1.1);
 }
 
 .sidebar-content {
-  padding: 6rem 2rem 3rem 3rem;
+  padding: 2rem;
   overflow-y: auto;
-  height: 100%;
+  flex: 1;
 }
 .sidebar-content::-webkit-scrollbar {
   width: 6px;
 }
 .sidebar-content::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.1);
 }
 .sidebar-content::-webkit-scrollbar-thumb {
   background: var(--accent-primary);
@@ -372,10 +402,10 @@ a {
   .hero-title { font-size: 2.8rem; }
   .overlay-panel { left: 5%; width: 90%; }
   
-  .sidebar-panel {
-    width: 100vw;
-    min-width: 100vw;
-    border-left: none;
+  .glass-window {
+    width: 95vw;
+    height: 85vh;
+    border-radius: 16px;
   }
   
   .nav-links {
