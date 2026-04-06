@@ -41,8 +41,14 @@
     <div class="cursor-follower" id="cursor"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Spline 3D Canvas Background -->
-    <iframe id="canvas3d" src="https://my.spline.design/nexbotrobotcharacterconcept-HRP0ToeSSPM8zhr2Tf5gPv9u/" frameborder="0"></iframe>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+        <div class="particles" id="particles"></div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -87,7 +93,16 @@
                 </div>
             </div>
             <div class="hero-image-container">
-                <!-- Spazio vuoto intenzionale per far vedere l'animazione Spline 3D Robot -->
+                <div class="profile-frame">
+                    <div class="spline-crop">
+                        <iframe id="spline-robot" src="https://my.spline.design/nexbotrobotcharacterconcept-HRP0ToeSSPM8zhr2Tf5gPv9u/" frameborder="0"></iframe>
+                    </div>
+                </div>
+                <div class="floating-elements">
+                    <div class="floating-icon">☕</div>
+                    <div class="floating-icon">💻</div>
+                    <div class="floating-icon">🎯</div>
+                </div>
             </div>
         </div>
     </section>

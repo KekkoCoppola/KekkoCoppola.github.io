@@ -56,7 +56,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow: hidden;
+  overflow-x: hidden;
   min-height: 100vh;
 }
 
@@ -1618,30 +1618,29 @@ section {
 }
 
 @keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Stili per la Landing Page Spline 3D */
-#canvas3d {
-  position: fixed;
+/* --- Container per nascondere il watermark e contenere il robot --- */
+.spline-crop {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  border-radius: 20px;
+  overflow: hidden; /* Questo taglia il logo che finisce "sotto" */
+}
+
+#spline-robot {
+  width: 100%;
+  height: calc(100% + 55px); /* Spinge in giù la tela per spingere il watermark fuori margine */
+  border: none;
+  pointer-events: auto;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: calc(100vh + 60px); /* Aggiunge 60px in fondo per sfalsare il logo fuori dallo schermo */
-  z-index: 0;
-  pointer-events: auto;
-  outline: none;
-  border: none;
-}
-
-/* Assicuriamoci che i contenuti interattivi (testo, navbar) siano sopra il canvas */
-.navbar, .hero-content {
-  z-index: 10;
-  position: relative;
-}
-
-/* Nascondiamo le vecchie sezioni dal momento che non si può scrollare */
-#about, #skills, #projects, #education, #contact, footer, .scroll-top {
-  display: none !important;
 }
 
 .loader-text {
