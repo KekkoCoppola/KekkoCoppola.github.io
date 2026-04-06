@@ -529,6 +529,9 @@
                 header.addEventListener('mousedown', (e) => {
                     // Avoid dragging side effects if closing
                     if (e.target.closest('.close-btn')) return;
+                    
+                    // Disable physical dragging on mobile devices (we use fixed bottom sheets)
+                    if (window.innerWidth <= 900) return;
 
                     isDragging = true;
                     win.classList.add('dragging');
