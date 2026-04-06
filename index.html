@@ -4,639 +4,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Francesco Coppola - Portfolio | Web Developer & Computer Science Student at UNISA">
-    <meta name="keywords" content="Francesco Coppola, Web Developer, Java, JavaScript, Portfolio, UNISA">
-    <meta name="author" content="Francesco Coppola">
-
+    <meta name="description" content="Francesco Coppola - Portfolio | Web Developer & Computer Science Student at UNISA">
     <title>Francesco Coppola | Portfolio</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
-
-    <!-- Google Fonts -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- CSS -->
+    
     <link rel="stylesheet" href="style/portfolio.css">
 </head>
 
 <body>
-    <!-- Premium Loader for Spline -->
+    <!-- Premium Loader -->
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-spinner"></div>
-            <p class="loader-text">Loading 3D Experience...</p>
+            <p class="loader-text">Initializing Engine...</p>
         </div>
     </div>
 
-    <!-- Spline 3D Scene Container -->
-    <div class="spline-container">
-        <canvas id="canvas3d"></canvas>
-    </div>
+    <div class="split-layout">
+        
+        <!-- Sinistra: Contenuto Scorrevole Serio -->
+        <main class="content-side">
+            <!-- Navigation -->
+            <nav class="navbar" id="navbar">
+                <a href="#home" class="logo">FC.</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">Chi Sono</a></li>
+                    <li><a href="#projects" class="nav-link">Progetti</a></li>
+                    <li><a href="#contact" class="nav-link">Contatti</a></li>
+                </ul>
+            </nav>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="logo" data-target="home">FC.</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#" class="nav-link" data-target="home">Home</a></li>
-            <li><a href="#" class="nav-link" data-target="about">Chi Sono</a></li>
-            <li><a href="#" class="nav-link" data-target="skills">Skills</a></li>
-            <li><a href="#" class="nav-link" data-target="projects">Progetti</a></li>
-            <li><a href="#" class="nav-link" data-target="education">Formazione</a></li>
-            <li><a href="#" class="nav-link" data-target="contact">Contatti</a></li>
-        </ul>
-    </nav>
-
-    <!-- UI Overlay Panels -->
-
-    <!-- Home (Hero Info Overlay) -->
-    <div class="overlay-panel active" id="panel-home">
-        <div class="hero-info">
-            <span class="hero-greeting">Ciao, sono</span>
-            <h1 class="hero-title">
-                Francesco <span class="highlight">Coppola</span>
-            </h1>
-            <div class="typing-container">
-                <span class="typing-text" id="typingText">Web Developer & CS Student</span>
-            </div>
-            <p class="hero-description">
-                Studente di Informatica al terzo anno presso l'Università degli Studi di Salerno,<br>
-                appassionato di sviluppo web e tecnologie immersive.
-            </p>
-            <div class="cta-container">
-                <button class="btn btn-primary" data-target="contact">📩 Contattami</button>
-                <button class="btn btn-secondary" data-target="projects">🚀 Vedi Progetti</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Draggable Windows -->
-
-    <!-- About Window -->
-    <div class="glass-window" id="panel-about">
-        <div class="window-header">
-            <span class="window-title">About Me</span>
-            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="sidebar-content">
-            <div class="section-header">
-                <span class="section-label">Introduzione</span>
-                <h2 class="section-title">Chi <span class="gradient">Sono</span></h2>
-            </div>
-
-            <div class="about-info">
-                <h3>Sviluppatore Web & Studente di Informatica</h3>
-                <p>
-                    Sono uno studente di Informatica (L-31) al terzo anno presso l'Università degli Studi di Salerno.
-                    La mia passione principale sono le applicazioni web, e mi piace moltissimo mettermi in gioco
-                    con nuove tecnologie e progetti sfidanti.
-                </p>
-                <p>
-                    Ho già sviluppato un software gestionale completo per un'azienda familiare (TecnoDeposit),
-                    che attualmente utilizzo e hosto personalmente sul mio server Ubuntu, attivo 24/7 e collegato ad un
-                    UPS
-                    per garantire massima affidabilità.
-                </p>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="label">Nome</div>
-                        <div class="value">Francesco Coppola</div>
+            <div class="content-wrapper">
+                <!-- HERO SECTION -->
+                <section id="home" class="section hero-section">
+                    <span class="hero-greeting">Ciao, sono</span>
+                    <h1 class="hero-title">
+                        Francesco <br><span class="highlight">Coppola</span>
+                    </h1>
+                    <div class="typing-container">
+                        <span class="typing-text" id="typingText">Web Developer & CS Student</span>
                     </div>
-                    <div class="info-item">
-                        <div class="label">Località</div>
-                        <div class="value">Italia 🇮🇹</div>
+                    <p class="hero-description">
+                        Studente di Informatica al terzo anno presso l'Università degli Studi di Salerno,
+                        appassionato di sviluppo web e software in generale. Costruisco applicativi moderni, sicuri e performanti.
+                    </p>
+                    <div class="cta-container">
+                        <a href="#contact" class="btn btn-primary">📩 Contattami</a>
+                        <a href="#projects" class="btn btn-secondary">🚀 Vedi Progetti</a>
                     </div>
-                    <div class="info-item">
-                        <div class="label">Università</div>
-                        <div class="value">UNISA - L-31</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="label">Disponibilità</div>
-                        <div class="value">Stage / Lavoro</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </section>
 
-    <!-- Skills Window -->
-    <div class="glass-window" id="panel-skills">
-        <div class="window-header">
-            <span class="window-title">Skills Overview</span>
-            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="sidebar-content">
-            <div class="section-header">
-                <span class="section-label">Tech Stack</span>
-                <h2 class="section-title">Le mie <span class="gradient">Skills</span></h2>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><span class="icon">🖥️</span> Linguaggi</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
+                <!-- ABOUT SECTION -->
+                <section id="about" class="section about-section">
+                    <div class="section-header">
+                        <span class="section-label">Introduzione</span>
+                        <h2 class="section-title">Chi Sono</h2>
                     </div>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="icon">⚡</span> Framework & Librerie</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Jakarta EE</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">JSP</span>
-                        <span class="skill-tag">Servlet</span>
-                        <span class="skill-tag">JDBC</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="icon">🗄️</span> Database & Tools</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Ubuntu Server</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">IntelliJ IDEA</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="icon">🎯</span> Soft Skills</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Team Working</span>
-                        <span class="skill-tag">Self Hosting</span>
-                        <span class="skill-tag">Server Management</span>
-                        <span class="skill-tag">Autodidatta</span>
-                    </div>
-                </div>
-
-                <div class="skill-bar-container" style="margin-top: 2rem;">
-                    <div class="skill-bar">
-                        <div class="skill-bar-header">
-                            <span class="skill-bar-name">Java / Jakarta EE</span>
-                            <span class="skill-bar-percent">90%</span>
-                        </div>
-                        <div class="skill-bar-track">
-                            <div class="skill-bar-fill" style="width: 90%; transform: scaleX(1)"></div>
+                    <div class="about-card">
+                        <p class="text-body">
+                            La mia passione principale sono le applicazioni web, e mi piace moltissimo mettermi in gioco
+                            con nuove tecnologie e progetti sfidanti. Curo la User Experience così come l'infrastruttura Backend.
+                        </p>
+                        <p class="text-body">
+                            Ho già sviluppato un software gestionale completo per un'azienda familiare (TecnoDeposit),
+                            che attualmente hosto e mantengo personalmente sul mio server Linux attivo 24/7.
+                        </p>
+                        <div class="info-grid">
+                            <div class="info-item"><div class="label">Località</div><div class="value">Italia 🇮🇹</div></div>
+                            <div class="info-item"><div class="label">Università</div><div class="value">UNISA (L-31)</div></div>
+                            <div class="info-item"><div class="label">Disponibilità</div><div class="value">Aperto a proposte</div></div>
                         </div>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-header">
-                            <span class="skill-bar-name">JavaScript / TypeScript</span>
-                            <span class="skill-bar-percent">85%</span>
-                        </div>
-                        <div class="skill-bar-track">
-                            <div class="skill-bar-fill" style="width: 85%; transform: scaleX(1)"></div>
+
+                    <!-- Skills -->
+                    <div class="skills-container">
+                        <h3 class="subsection-title">Tech Stack Princiale</h3>
+                        <div class="skills-tags">
+                            <span class="tech-pill">Java / Jakarta EE</span>
+                            <span class="tech-pill">JavaScript / TS</span>
+                            <span class="tech-pill">React</span>
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Linux Admin</span>
                         </div>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-header">
-                            <span class="skill-bar-name">SQL / MySQL</span>
-                            <span class="skill-bar-percent">80%</span>
-                        </div>
-                        <div class="skill-bar-track">
-                            <div class="skill-bar-fill" style="width: 80%; transform: scaleX(1)"></div>
-                        </div>
+                </section>
+
+                <!-- PROJECTS SECTION -->
+                <section id="projects" class="section projects-section">
+                    <div class="section-header">
+                        <span class="section-label">Lavori Recenti</span>
+                        <h2 class="section-title">Portfolio</h2>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Projects Window -->
-    <div class="glass-window" id="panel-projects">
-        <div class="window-header">
-            <span class="window-title">Portfolio</span>
-            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="sidebar-content">
-            <div class="section-header">
-                <span class="section-label">Lavori Recenti</span>
-                <h2 class="section-title">I miei <span class="gradient">Progetti</span></h2>
-            </div>
-
-            <div class="projects-grid sidebar-projects">
-                <!-- TecnoDeposit -->
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="assets/TecnoDepositLogo.png" alt="TecnoDeposit">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/KekkoCoppola/TecnoDeposit-Preview" target="_blank"
-                                    class="project-link" title="GitHub">📂</a>
-                                <a href="http://tecnodeposit.it/" target="_blank" class="project-link"
-                                    title="Home Page">🔗</a>
+                    
+                    <div class="bento-grid">
+                        <!-- Project 1 -->
+                        <article class="bento-card bento-large">
+                            <div class="project-header">
+                                <div class="project-tech">
+                                    <span class="pill-mini">Jakarta EE</span>
+                                    <span class="pill-mini">MySQL</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/KekkoCoppola/TecnoDeposit-Preview" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                    <a href="http://tecnodeposit.it/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span class="tech-tag">Jakarta EE</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <h3 class="project-title">TecnoDeposit</h3>
-                        <p class="project-description">
-                            Web App aziendale per la gestione inventario e richieste materiali.
-                            Attualmente in produzione.
-                        </p>
-                    </div>
-                </article>
+                            <h3 class="project-name">TecnoDeposit</h3>
+                            <p class="project-desc">Software aziendale ERP in produzione per la gestione remota dell'inventario.</p>
+                        </article>
 
-                <!-- Italicious -->
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="assets/ItaliciousLogo.png" alt="Italicious">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/KekkoCoppola/Italicious" target="_blank"
-                                    class="project-link" title="GitHub">📂</a>
-                                <a href="https://kekkocoppola.github.io/Italicious/" target="_blank"
-                                    class="project-link" title="Live Demo">🔗</a>
+                        <!-- Project 2 -->
+                        <article class="bento-card bento-large">
+                            <div class="project-header">
+                                <div class="project-tech">
+                                    <span class="pill-mini">React</span>
+                                    <span class="pill-mini">Node.js</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/KekkoCoppola/SINTONIA" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                    <a href="https://sintonia-app.netlify.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">E-Commerce</span>
-                        </div>
-                        <h3 class="project-title">Italicious</h3>
-                        <p class="project-description">
-                            Piattaforma e-commerce dedicata alla vendita di prodotti alimentari italiani.
-                        </p>
-                    </div>
-                </article>
+                            <h3 class="project-name">SINTONIA</h3>
+                            <p class="project-desc">Web App con TypeScript ed un'esperienza utente estremendamente interattiva.</p>
+                        </article>
 
-                <!-- SINTONIA -->
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="assets/SintoniaLogo.png" alt="SINTONIA">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/KekkoCoppola/SINTONIA" target="_blank" class="project-link"
-                                    title="GitHub">📂</a>
-                                <a href="https://sintonia-app.netlify.app/" target="_blank" class="project-link"
-                                    title="Provalo (Utente)">▶️🙍🏻‍♂️</a>
+                        <!-- Project 3 -->
+                        <article class="bento-card">
+                            <div class="project-header">
+                                <div class="project-tech"><span class="pill-mini">Java</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/KekkoCoppola/Italicious" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                        </div>
-                        <h3 class="project-title">SINTONIA</h3>
-                        <p class="project-description">
-                            Una piattaforma moderna in TypeScript con backend Node.js per creare un'esperienza utente
-                            reattiva.
-                        </p>
-                    </div>
-                </article>
+                            <h3 class="project-name">Italicious</h3>
+                            <p class="project-desc">Piattaforma E-Commerce per prodotti italiani elaborata per scopi didattici.</p>
+                        </article>
 
-                <!-- ZenPlanner -->
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="assets/ZenPlannerLogo.png" alt="ZenPlanner">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/KekkoCoppola/ZenPlanner" target="_blank"
-                                    class="project-link" title="GitHub">📂</a>
-                                <a href="https://kekkocoppola.github.io/ZenPlanner/" target="_blank"
-                                    class="project-link" title="Provalo">▶️</a>
+                        <!-- Project 4 -->
+                        <article class="bento-card">
+                            <div class="project-header">
+                                <div class="project-tech"><span class="pill-mini">Python AI</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/KekkoCoppola/ZenPlanner" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                </div>
                             </div>
-                        </div>
+                            <h3 class="project-name">ZenPlanner</h3>
+                            <p class="project-desc">Scheduler basato su Machine Learning per ottimizzare i ritmi di studio.</p>
+                        </article>
                     </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Machine Learning</span>
-                        </div>
-                        <h3 class="project-title">ZenPlanner</h3>
-                        <p class="project-description">
-                            Scheduler adattivo intelligente con AI Simbolica e ML per ottimizzare studio e salute
-                            mentale.
-                        </p>
-                    </div>
-                </article>
+                </section>
 
-                <!-- Cloto -->
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="assets/Cloto.png" alt="Cloto AI">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/KekkoCoppola/Cloto" target="_blank" class="project-link"
-                                    title="GitHub">📂</a>
-                            </div>
-                        </div>
+                <!-- CONTACT SECTION -->
+                <section id="contact" class="section contact-section">
+                    <div class="section-header">
+                        <span class="section-label">Get in Touch</span>
+                        <h2 class="section-title">Contatti</h2>
                     </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Gemini AI</span>
-                        </div>
-                        <h3 class="project-title">Cloto AI</h3>
-                        <p class="project-description">
-                            Assistente AI per CV che agisce come un recruiter esperto.
-                        </p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:francescocoppola877@gmail.com" class="contact-btn">
+                            <i class="fa-solid fa-envelope"></i> francescocoppola877@gmail.com
+                        </a>
+                        <a href="https://github.com/KekkoCoppola" target="_blank" class="contact-btn">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="www.linkedin.com/in/kekkocoppola" target="_blank" class="contact-btn">
+                            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                        </a>
                     </div>
-                </article>
+                    <p class="footer-copy">© 2026 Francesco Coppola. Costruito con precisione.</p>
+                </section>
             </div>
-        </div>
+        </main>
+
+        <!-- Destra: Canvas Spline Esclusivo -->
+        <aside class="spline-side">
+            <div class="spline-wrapper">
+                <!-- Il Canvas Spline "Robottino" originale -->
+                <canvas id="canvas3d"></canvas>
+            </div>
+        </aside>
+
     </div>
 
-    <!-- Education Window -->
-    <div class="glass-window" id="panel-education">
-        <div class="window-header">
-            <span class="window-title">Education</span>
-            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="sidebar-content">
-            <div class="section-header">
-                <span class="section-label">Formazione</span>
-                <h2 class="section-title">Il mio <span class="gradient">Percorso</span></h2>
-            </div>
-
-            <div class="education-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2018 - 2023</span>
-                        <h3 class="timeline-title">Diploma ITIS</h3>
-                        <p class="timeline-institution">ITIS Ettore Majorana</p>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
-                            Informatica e Telecomunicazioni - Spec. Telecomunicazioni
-                        </p>
-                        <span class="timeline-grade">100/100 🏆</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023 - In corso</span>
-                        <h3 class="timeline-title">Laurea in Informatica (L-31)</h3>
-                        <p class="timeline-institution">Università degli Studi di Salerno</p>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                            Terzo anno in corso. Focus su programmazione, database,
-                            architettura software e sviluppo web.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Window -->
-    <div class="glass-window" id="panel-contact">
-        <div class="window-header">
-            <span class="window-title">Contact</span>
-            <button class="close-btn" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="sidebar-content">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contattami <span class="gradient">Ora</span></h2>
-            </div>
-
-            <div class="contact-grid sidebar-contact">
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <h3>Email</h3>
-                    <p><a href="mailto:francescocoppola877@gmail.com">francescocoppola877@gmail.com</a></p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fa-solid fa-file-signature"></i></div>
-                    <h3>PEC</h3>
-                    <p><a href="mailto:francescocoppolaa@pec.it">francescocoppolaa@pec.it</a></p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <h3>Location</h3>
-                    <p>Italia 🇮🇹</p>
-                </div>
-            </div>
-
-            <div class="social-links" style="margin-top: 3rem; justify-content: center;">
-                <a href="https://github.com/KekkoCoppola" target="_blank" class="social-link" title="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="www.linkedin.com/in/kekkocoppola" target="_blank" class="social-link" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://instagram.com/_.kekko_coppola._" target="_blank" class="social-link" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Core Scripts -->
+    <!-- Modulo JS Spline -->
     <script type="module">
         import { Application } from 'https://esm.sh/@splinetool/runtime';
-
         const canvas = document.getElementById('canvas3d');
         const spline = new Application(canvas);
-
+        
         spline.load('https://prod.spline.design/0M5Zwd4bfkk7uAqN/scene.splinecode')
             .then(() => {
                 document.getElementById('loader').classList.add('hidden');
             });
     </script>
 
-    <!-- UI Logic Script -->
+    <!-- JS Base UI -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('[data-target]');
-            const windows = document.querySelectorAll('.glass-window');
-            const overlays = document.querySelectorAll('.overlay-panel');
-            const closeBtns = document.querySelectorAll('.close-btn');
-
-            let topZIndex = 1500; // Counter for bringing window to front
-
-            // Targeting logic
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('data-target');
-
-                    // If opening home, hide everything
-                    if (targetId === 'home') {
-                        windows.forEach(p => p.classList.remove('active'));
-                        overlays.forEach(p => p.classList.remove('active'));
-                        document.getElementById('panel-home').classList.add('active');
-                    } else {
-                        // Open the window and bring it to front
-                        const el = document.getElementById('panel-' + targetId);
-                        if (el && !el.classList.contains('active')) {
-                            // Don't close others immediately to allow multiple open windows
-                            el.classList.add('active');
-                            // Always bring to front when opening
-                            topZIndex++;
-                            el.style.zIndex = topZIndex;
-                        }
-                    }
-
-                    // Close mobile menu if open
-                    document.getElementById('menuToggle').classList.remove('active');
-                    document.getElementById('navLinks').classList.remove('active');
-                });
-            });
-
-            // Close button logic
-            closeBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    // Close this specific window
-                    const windowElem = e.target.closest('.glass-window');
-                    if (windowElem) {
-                        windowElem.classList.remove('active');
-                    }
-
-                    // Check if any window is still open
-                    const anyOpen = Array.from(windows).some(w => w.classList.contains('active'));
-                    if (!anyOpen) {
-                        document.getElementById('panel-home').classList.add('active');
-                    }
-                });
-            });
-
-            // --- DRAG AND DROP OS-LIKE LOGIC ---
-            windows.forEach(win => {
-                const header = win.querySelector('.window-header');
-
-                // Bring to front when clicked anywhere on the window
-                win.addEventListener('mousedown', () => {
-                    topZIndex++;
-                    win.style.zIndex = topZIndex;
-                    // Also hide home panel if it's there
-                    document.getElementById('panel-home').classList.remove('active');
-                });
-
-                if (!header) return;
-
-                let isDragging = false;
-                let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
-
-                header.addEventListener('mousedown', (e) => {
-                    // Avoid dragging side effects if closing
-                    if (e.target.closest('.close-btn')) return;
-
-                    // Disable physical dragging on mobile devices (we use fixed bottom sheets)
-                    if (window.innerWidth <= 900) return;
-
-                    isDragging = true;
-                    win.classList.add('dragging');
-
-                    startX = e.clientX;
-                    startY = e.clientY;
-
-                    // Get current CSS transform translate values (or default center)
-                    const style = window.getComputedStyle(win);
-                    const matrix = new DOMMatrixReadOnly(style.transform);
-
-                    // The transform translate values in bounding logic
-                    const rect = win.getBoundingClientRect();
-                    // We switch from translate(-50%, -50%) to direct pixel top/left for dragging ease
-                    win.style.left = rect.left + 'px';
-                    win.style.top = rect.top + 'px';
-                    win.style.transform = 'none'; // Clear translate(-50%, -50%)
-
-                    initialLeft = rect.left;
-                    initialTop = rect.top;
-
-                    // Disable text selection during drag
-                    document.body.style.userSelect = 'none';
-                });
-
-                document.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
-                    e.preventDefault();
-
-                    const dx = e.clientX - startX;
-                    const dy = e.clientY - startY;
-
-                    win.style.left = `${initialLeft + dx}px`;
-                    win.style.top = `${initialTop + dy}px`;
-                });
-
-                document.addEventListener('mouseup', () => {
-                    if (isDragging) {
-                        isDragging = false;
-                        win.classList.remove('dragging');
-                        document.body.style.userSelect = '';
-                    }
-                });
-            });
-
-            // Effetto macchina da scrivere
-            const typingTexts = [
-                'Web Developer',
-                'CS Student @ UNISA',
-                'Java Enthusiast',
-                'Problem Solver'
-            ];
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            const typingElement = document.getElementById('typingText');
+            // Typing effect
+            const texts = ['Web Developer', 'CS Student @ UNISA', 'Tech Enthusiast'];
+            let textIdx = 0, charIdx = 0, isDeleting = false;
+            const typingEl = document.getElementById('typingText');
 
             function typeText() {
-                if (!typingElement) return;
-                const currentText = typingTexts[textIndex];
-
-                if (isDeleting) {
-                    typingElement.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typingElement.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                let typeSpeed = isDeleting ? 50 : 100;
-
-                if (!isDeleting && charIndex === currentText.length) {
-                    typeSpeed = 2000;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % typingTexts.length;
-                    typeSpeed = 500;
-                }
-                setTimeout(typeText, typeSpeed);
+                if(!typingEl) return;
+                const txt = texts[textIdx];
+                typingEl.textContent = isDeleting ? txt.substring(0, charIdx-1) : txt.substring(0, charIdx+1);
+                charIdx += isDeleting ? -1 : 1;
+                
+                let speed = isDeleting ? 30 : 80;
+                if (!isDeleting && charIdx === txt.length) { speed = 2000; isDeleting = true; }
+                else if (isDeleting && charIdx === 0) { speed = 500; isDeleting = false; textIdx = (textIdx + 1) % texts.length; }
+                setTimeout(typeText, speed);
             }
             typeText();
 
-            // Menu hamburger per mobile
+            // Mobile menu toggle
             const menuToggle = document.getElementById('menuToggle');
-            const navLinksContainer = document.getElementById('navLinks');
-
+            const navLinks = document.getElementById('navLinks');
             menuToggle.addEventListener('click', () => {
                 menuToggle.classList.toggle('active');
-                navLinksContainer.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Chiudi nav cliccando sui link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Intersection Observer for highlighting navbar properly upon scroll
+            const sections = document.querySelectorAll('.section');
+            const navItems = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Se siamo scrollati oltre 1/3 della sezione:
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href') === `#${current}`) {
+                        a.classList.add('active');
+                    }
+                });
             });
         });
     </script>
 </body>
-
 </html>
