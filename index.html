@@ -42,7 +42,7 @@
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- Spline 3D Canvas Background -->
-    <canvas id="canvas3d"></canvas>
+    <iframe id="canvas3d" src="https://my.spline.design/nexbotrobotcharacterconcept-HRP0ToeSSPM8zhr2Tf5gPv9u/" frameborder="0"></iframe>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -575,8 +575,8 @@
         });
 
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
+            cursorX += (mouseX - cursorX) * 0.4;
+            cursorY += (mouseY - cursorY) * 0.4;
 
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
@@ -777,20 +777,6 @@
                 navLinks.classList.remove('active');
             });
         });
-    </script>
-
-    <!-- Spline 3D Integration -->
-    <script type="module">
-        import { Application } from 'https://esm.sh/@splinetool/runtime';
-
-        const canvas = document.getElementById('canvas3d');
-        const spline = new Application(canvas);
-
-        // Disabilitiamo il logo promozionale (il runtime di default non lo mostra, ma per sicurezza siamo a posto)
-        spline.load('https://prod.spline.design/HRP0ToeSSPM8zhr2Tf5gPv9u/scene.splinecode')
-            .then(() => {
-                console.log('Spline 3D Scene loaded successfully!');
-            });
     </script>
 </body>
 
