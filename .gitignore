@@ -1,0 +1,25 @@
+# Agent
+.agents/
+.agent/
+_agents/
+_agent/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+
+# IDEs
+.vscode/
+.idea/
+
+# Tooling
+.gemini/
+.antigravity/
+
+# Temporary
+/tmp/
+*.tmp
+*.log
