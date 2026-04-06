@@ -319,7 +319,20 @@ a {
   position: relative;
 }
 
+#hero-spline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  border: none;
+  pointer-events: auto;
+}
+
 .hero-content {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -1623,25 +1636,7 @@ section {
   }
 }
 
-/* --- Container per nascondere il watermark e contenere il robot --- */
-.spline-crop {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 2;
-  border-radius: 20px;
-  overflow: hidden; /* Questo taglia il logo che finisce "sotto" */
-}
 
-#spline-robot {
-  width: 100%;
-  height: calc(100% + 55px); /* Spinge in giù la tela per spingere il watermark fuori margine */
-  border: none;
-  pointer-events: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 .loader-text {
   font-size: 1.2rem;
